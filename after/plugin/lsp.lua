@@ -44,6 +44,7 @@ local servers = {
 		},
 	},
 	bashls = {},
+	rust_analyzer = {},
 }
 
 mason_lspconfig.setup({
@@ -61,23 +62,22 @@ mason_lspconfig.setup_handlers({
 
 -- format
 function FormatCode()
-  local filetype = vim.bo.filetype
-  local cmd = ""
+	local filetype = vim.bo.filetype
+	local cmd = ""
 
-  if filetype == "python" then
-    cmd = "~/.local/share/nvim/mason/bin/black %"
-  elseif filetype == "lua" then
-    cmd = "~/.local/share/nvim/mason/bin/stylua %"
-  else
-    print("Formatter not available for " .. filetype)
-    return
-  end
+	if filetype == "python" then
+		cmd = "~/.local/share/nvim/mason/bin/black %"
+	elseif filetype == "lua" then
+		cmd = "~/.local/share/nvim/mason/bin/stylua %"
+	else
+		print("Formatter not available for " .. filetype)
+		return
+	end
 
-  vim.cmd(string.format("silent !%s", cmd))
-  vim.cmd("redraw!")
-  local filename = vim.fn.expand("%:t")
-  print(string.format("%s formatted", filename))
+	vim.cmd(string.format("silent !%s", cmd))
+	vim.cmd("redraw!")
+	local filename = vim.fn.expand("%:t")
+	print(string.format("%s formatted", filename))
 end
 
 vim.api.nvim_set_keymap('n', '<Space>f', [[<Cmd>lua FormatCode()<CR>]], { noremap = true, silent = true })
-

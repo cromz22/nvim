@@ -77,7 +77,7 @@ To add one:
 
 1. install one through mason (`:Mason`)
 1. add LSP server to `servers` variable in `after/plugin/lsp.lua`
-1. add formatter to `sources` inside `null_ls.setup` in `after/plugin/lsp.lua`
+1. add formatter to `FormatCode` function `after/plugin/lsp.lua`
 
 cf.
 
