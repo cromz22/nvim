@@ -21,6 +21,20 @@ require("lazy").setup({
 		end,
 	},
 
+	-- tree view
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		keys = {
+			{ "<leader>t", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+		},
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		}
+	},
+
 	-- fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
@@ -35,20 +49,6 @@ require("lazy").setup({
 		-- sort by "frecency"
 		"nvim-telescope/telescope-frecency.nvim",
 		dependencies = { "kkharji/sqlite.lua" },
-	},
-
-	-- tree view
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		keys = {
-			{ "<leader>t", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
-		},
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
-		}
 	},
 
 	-- highlighting
