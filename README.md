@@ -56,6 +56,7 @@ To add one:
 To use language servers, [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) is required.
 To manage language servers, linter, and formatter, I use [mason](https://github.com/williamboman/mason.nvim).
 [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) closes some gaps between the two.
+Make sure `npm` can be used so that `pyright` and `bash-language-server` can be used.
 
 I use:
 
