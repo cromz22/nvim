@@ -1,6 +1,6 @@
 # Neovim Settings
 
-# Requirements
+## Requirements
 
 - nvim >= 0.11
 
