@@ -1,5 +1,9 @@
 # Neovim Settings
 
+# Requirements
+
+- nvim >= 0.11
+
 ## Installation
 
 - Clone this repository under `~/.config`.
