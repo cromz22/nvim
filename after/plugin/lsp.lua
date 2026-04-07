@@ -51,14 +51,13 @@ mason_lspconfig.setup({
 	ensure_installed = vim.tbl_keys(servers),
 })
 
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		require("lspconfig")[server_name].setup({
-			on_attach = on_attach,
-			settings = servers[server_name],
-		})
-	end,
-})
+for server_name, settings in pairs(servers) do
+    vim.lsp.config(server_name, {
+        on_attach = on_attach,
+        settings = settings,
+    })
+    vim.lsp.enable(server_name)
+end
 
 -- format
 function FormatCode()
