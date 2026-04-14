@@ -72,7 +72,72 @@ require("lazy").setup({
 	-- highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate"
+		build = ":TSUpdate",
+		config = function()
+			local ts = require("nvim-treesitter")
+			local languages = {
+				"bash",
+				"css",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"query",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"yaml",
+			}
+
+			ts.setup({})
+
+			local ft_to_lang = {
+				typescriptreact = "tsx",
+				javascriptreact = "tsx",
+			}
+			local indent_langs = {
+				css = true,
+				html = true,
+				javascript = true,
+				lua = true,
+				python = true,
+				typescript = true,
+				tsx = true,
+			}
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					local ft = vim.bo[args.buf].filetype
+					local lang = ft_to_lang[ft] or ft
+
+					if not vim.list_contains(languages, lang) then
+						return
+					end
+
+					pcall(vim.treesitter.start, args.buf, lang)
+
+					if indent_langs[lang] then
+						vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
+
+			local installed = ts.get_installed()
+			local missing = vim.tbl_filter(function(lang)
+				return not vim.list_contains(installed, lang)
+			end, languages)
+
+			if #missing > 0 and vim.fn.executable("tree-sitter") == 1 then
+				vim.schedule(function()
+					ts.install(missing, { summary = true })
+				end)
+			end
+		end,
 	},
 
 	-- commenting
