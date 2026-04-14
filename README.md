@@ -2,7 +2,9 @@
 
 ## Requirements
 
-- nvim >= 0.11
+- nvim >= 0.12
+- [tree-sitter](https://tree-sitter.github.io/tree-sitter/creating-parsers/1-getting-started.html) CLI
+  - required for `nvim-treesitter` parser installation and updates
 
 ## Installation
 
@@ -29,6 +31,7 @@ I use:
 	- [telescope-project](https://github.com/nvim-telescope/telescope-project.nvim) to switch between projects
 	- [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim) for sorting files with "frecency"
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for syntax parsing (which is helpful for semantic highlighting, selection, etc.)
+	- configured for `bash`, `css`, `html`, `javascript`, `json`, `lua`, `markdown`, `markdown_inline`, `python`, `query`, `toml`, `tsx`, `typescript`, `vim`, `vimdoc`, and `yaml`
 - [Comment](https://github.com/numToStr/Comment.nvim) for commenting
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) for bracket completion
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets (See below for more info)
@@ -88,4 +91,3 @@ cf.
 
 - [available language servers for nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
 - [available formatters for null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
-
