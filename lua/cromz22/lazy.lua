@@ -36,6 +36,45 @@ require("lazy").setup({
 		config = function()
 			require("neo-tree").setup({
 				close_if_last_window = true,
+				default_component_configs = {
+					indent = {
+						with_expanders = false,
+					},
+					icon = {
+						folder_closed = ">",
+						folder_open = "v",
+						folder_empty = ">",
+						folder_empty_open = "v",
+						default = "-",
+						-- Avoid Nerd Font-dependent devicons and keep a stable ASCII marker.
+						provider = function(icon, node, _)
+							if node.type == "directory" then
+								if node:is_expanded() then
+									icon.text = "v"
+								else
+									icon.text = ">"
+								end
+								return icon
+							end
+
+							icon.text = "-"
+							return icon
+						end,
+					},
+					git_status = {
+						symbols = {
+							added = "[A]",
+							deleted = "[D]",
+							modified = "[M]",
+							renamed = "[R]",
+							untracked = "[?]",
+							ignored = "[I]",
+							unstaged = "[U]",
+							staged = "[S]",
+							conflict = "[!]",
+						},
+					},
+				},
 				window = {
 					position = "left",
 					width = 30,
@@ -45,6 +84,20 @@ require("lazy").setup({
 					},
 				},
 				filesystem = {
+					renderers = {
+						directory = {
+							{ "indent" },
+							{ "icon" },
+							{ "name", trailing_slash = true },
+							{ "git_status", zindex = 10 },
+						},
+						file = {
+							{ "indent" },
+							{ "icon" },
+							{ "name" },
+							{ "git_status", zindex = 10 },
+						},
+					},
 					filtered_items = {
 						visible = true,
 					}
