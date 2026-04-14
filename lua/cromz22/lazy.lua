@@ -156,12 +156,6 @@ require("lazy").setup({
 		opts = {}
 	},
 
-	-- snippet
-	-- {
-	-- 	"L3MON4D3/LuaSnip",
-	-- 	version = "2.*",
-	-- },
-
 	-- language server
     {
         "williamboman/mason.nvim",

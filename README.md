@@ -34,7 +34,6 @@ I use:
 	- configured for `bash`, `css`, `html`, `javascript`, `json`, `lua`, `markdown`, `markdown_inline`, `python`, `query`, `toml`, `tsx`, `typescript`, `vim`, `vimdoc`, and `yaml`
 - [Comment](https://github.com/numToStr/Comment.nvim) for commenting
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) for bracket completion
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets (See below for more info)
 - [mason](https://github.com/williamboman/mason.nvim), [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim), [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) for language server (See below for more info)
 - [copilot](https://github.com/github/copilot.vim) to use Github Copilot
     - Subscription to copilot and node.js are needed
@@ -45,17 +44,6 @@ To add a package:
 1. create `after/plugin/package-name-or-whatever.lua` and write detailed settings there if needed
 
 Type `:Lazy home` to manage installed packages.
-
-
-## Snippets
-
-I use [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets.
-
-To add one:
-
-1. create file `snippets/language-name.lua`
-	- `language-name` has to match with filetype (`:set filetype?`)
-1. add snippet there
 
 
 ## Language Server, Linter, Formatter
