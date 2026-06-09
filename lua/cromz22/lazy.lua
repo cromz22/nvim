@@ -71,6 +71,7 @@ require("lazy").setup({
 	-- highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		build = ":TSUpdate",
 		config = function()
 			local ts = require("nvim-treesitter")
@@ -136,6 +137,39 @@ require("lazy").setup({
 					ts.install(missing, { summary = true })
 				end)
 			end
+		end,
+	},
+
+	-- treesitter-based text objects & motions (jump to / select functions, classes, args)
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("nvim-treesitter-textobjects").setup({
+				move = { set_jumps = true }, -- record positions in the jumplist
+				select = { lookahead = true },
+			})
+
+			local move = require("nvim-treesitter-textobjects.move")
+			local select = require("nvim-treesitter-textobjects.select")
+			local map = vim.keymap.set
+
+			-- jump between functions / classes (works in Python, unlike the built-in brace motions)
+			map({ "n", "x", "o" }, "]m", function() move.goto_next_start("@function.outer", "textobjects") end, { desc = "Next function start" })
+			map({ "n", "x", "o" }, "[m", function() move.goto_previous_start("@function.outer", "textobjects") end, { desc = "Prev function start" })
+			map({ "n", "x", "o" }, "]M", function() move.goto_next_end("@function.outer", "textobjects") end, { desc = "Next function end" })
+			map({ "n", "x", "o" }, "[M", function() move.goto_previous_end("@function.outer", "textobjects") end, { desc = "Prev function end" })
+			map({ "n", "x", "o" }, "]]", function() move.goto_next_start("@class.outer", "textobjects") end, { desc = "Next class start" })
+			map({ "n", "x", "o" }, "[[", function() move.goto_previous_start("@class.outer", "textobjects") end, { desc = "Prev class start" })
+
+			-- select / operate: dif = delete inside function, vaf = select a function, cia = change an argument
+			map({ "x", "o" }, "af", function() select.select_textobject("@function.outer", "textobjects") end, { desc = "a function" })
+			map({ "x", "o" }, "if", function() select.select_textobject("@function.inner", "textobjects") end, { desc = "inner function" })
+			map({ "x", "o" }, "ac", function() select.select_textobject("@class.outer", "textobjects") end, { desc = "a class" })
+			map({ "x", "o" }, "ic", function() select.select_textobject("@class.inner", "textobjects") end, { desc = "inner class" })
+			map({ "x", "o" }, "aa", function() select.select_textobject("@parameter.outer", "textobjects") end, { desc = "an argument" })
+			map({ "x", "o" }, "ia", function() select.select_textobject("@parameter.inner", "textobjects") end, { desc = "inner argument" })
 		end,
 	},
 
