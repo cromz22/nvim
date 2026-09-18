@@ -124,6 +124,8 @@ require("lazy").setup({
 	-- highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
 			local ts = require("nvim-treesitter")
