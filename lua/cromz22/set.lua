@@ -1,4 +1,5 @@
 vim.opt.number = true
+vim.opt.signcolumn = "yes"
 vim.opt.virtualedit = "onemore"
 vim.opt.showmatch = true
 vim.opt.tabstop = 4

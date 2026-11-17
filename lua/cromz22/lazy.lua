@@ -106,6 +106,20 @@ require("lazy").setup({
 		end,
 	},
 
+	-- line-level Git changes
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "^" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
+
 	-- fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
