@@ -26,6 +26,10 @@ I use:
 
 - [iceberg](https://github.com/cocopon/iceberg.vim) as colorscheme
 - [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) for tree view of files and directories
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) for line-level Git change markers
+    - Gutter signs: `+` added, `~` modified, `_` deleted below, `^` deleted at the top of the file.
+    - Use `:Gitsigns preview_hunk` to inspect the change under the cursor.
+    - Use `:Gitsigns next_hunk` and `:Gitsigns prev_hunk` to navigate changes.
 - [telescope](https://github.com/nvim-telescope/telescope.nvim) as fuzzy finder
 	- [ripgrep](https://github.com/BurntSushi/ripgrep) is required for full functionality
 	- [telescope-project](https://github.com/nvim-telescope/telescope-project.nvim) to switch between projects
